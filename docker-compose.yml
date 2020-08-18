@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+  node:
+    build: .
+    working_dir: /usr/src/app
+    environment:
+        - NODE_ENV=production #development
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "3000:3000"
+    # command: bash -c "npm install"
+    command: bash -c "npm run up"
+    # command: bash -c "npm start"
+    # command: bash -c "npm -y init && npm install --save express"
+    # command: bash -c "npm install --save-dev nodemon"
+    # command: bash -c "npm install --save morgan"
+    # command: bash -c "npm install --save body-parser"
+    # command: bash -c "npm install --save mongoose"
+    # command: bash -c "npm install --save express-session"
+    # command: bash -c "npm install --save passport"
+    # command: bash -c "npm install --save passport-local"
+    # command: bash -c "npm install --save bcrypt-nodejs"
+    # command: bash -c "npm install --save connect-flash"
+    # command: bash -c "npm install --save connect-mongo"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"

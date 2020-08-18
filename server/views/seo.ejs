@@ -1,0 +1,43 @@
+<% 
+  block('head').append(include('head')) 
+%><% 
+  block('footer').append('<!-- FOOTER -->') 
+%><%- 
+  layout('layout/index.ejs')
+%>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "<% if(typeof description !== 'undefined') { %><%= description %><% }%>",
+        "datePublished": "2017-02-13T08:00:43+01:00",
+        "dateModified": "2020-08-06T08:34:11+02:00",
+        "publisher": {
+          "@type": "Organization",
+          "name": "<% if(typeof site !== 'undefined') { %><%= site %><% }%>",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "<% if(typeof image !== 'undefined') { %><%= image %><% }%>"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "<% if(typeof url !== 'undefined') { %><%= url %><% }%>"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "<% if(typeof author !== 'undefined') { %><%= author %><% }%>"
+        },
+        "description": "<% if(typeof description !== 'undefined') { %><%= description %><% }%>",
+        "image": {
+          "@type": "ImageObject",
+          "url": "<% if(typeof image !== 'undefined') { %><%= image %><% }%>",
+          "width": 1200,
+          "height": 512
+        }
+      }
+    ]
+  }
+</script>
